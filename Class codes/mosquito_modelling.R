@@ -39,3 +39,24 @@ Anopheles_pred1 <- glmer(Anopheles ~ scale(Turbidity)* scale(DO) +
                          family = poisson(link = "log"))
 summary(Anopheles_pred1)### this is the best model, thus far!
 
+
+
+Anopheles_pred1 <- lmer(Anopheles ~ scale(Turbidity)+ scale(DO)+  
+                          (1|Ecozones)+  (1|Habitat),  REML = TRUE,
+                        data = omo, control = lmerControl(optimizer = "nmkbw"))
+summary(Anopheles_pred1)
+
+
+Anopheles_pred2 <- lmer(Anopheles ~ scale(Turbidity)+ scale(DO)+ scale(Magnesium)+
+                          (1|Habitat),  REML = FALSE,
+                        data = omo)
+summary(Anopheles_pred2)
+
+AIC(Anopheles_pred1, Anopheles_pred2)
+
+
+
+allFit(Anopheles_pred1)
+
+
+write.csv(omo,"C:\\Users\\DELL\\Documents\\Git in R\\Advanced-Data-Science-Class\\Practice\\mosquito_clean.csv" )
