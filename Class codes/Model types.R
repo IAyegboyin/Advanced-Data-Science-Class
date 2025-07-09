@@ -27,7 +27,7 @@ hist(mosquito.data$Aedes, breaks = 10)
 
 set.seed(99)
 
-data4sim <- rnorm(150, mean = 20, sd = 6)
+data4sim <- rnorm(150, mean = 8, sd = 2)
 hist(data4sim)
 
 qqnorm(data4sim)
@@ -37,6 +37,7 @@ discrete.data <- round(data4sim, 0)
 
 qqnorm(discrete.data)
 qqline(discrete.data)
+hist(discrete.data, breaks = 12)
 
 editedDD <- edit(discrete.data)
 hist(editedDD)
@@ -46,3 +47,14 @@ hist(editedDD)
 
 qqnorm(editedDD)
 qqline(editedDD)
+
+
+
+
+view(melanomafor)
+
+
+melanomafor <- melanomafor %>% 
+  mutate(sex= factor(sex,    levels = c("0", "1"), 
+                     labels =  c("Female", "Male")))
+
